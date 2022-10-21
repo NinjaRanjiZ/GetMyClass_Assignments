@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="your_learning_style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Poppins|Tahoma|Geneva">
     <title>Learning Style Form</title>
 </head>
 <body>
@@ -352,8 +353,11 @@
 
 
                 </ul>
-                <input type="submit" value="submit" name="submit">
+                <input type="submit" value="submit" name="submit" id="submitButton">
                 <br>
+            </div>
+        </form>
+    </div>
 
                 <?php
                     // $answers = $_POST["Ans"];
@@ -397,49 +401,107 @@
                         // $sessionNumber = 0;
                         // echo "session before data base query is $sessionNumber";
 
-                        function finalQuery() {
+                        // function finalQuery() {
 
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "test1";
+                        //     $servername = "localhost";
+                        //     $username = "root";
+                        //     $password = "";
+                        //     $dbname = "test1";
 
-                            // Create connection
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                            // Check connection
-                            if (!$conn) {
-                                die("Connection failed: " .mysqli_connect_error());
-                            }
+                        //     // Create connection
+                        //     $conn = mysqli_connect($servername, $username, $password, $dbname);
+                        //     // Check connection
+                        //     if (!$conn) {
+                        //         die("Connection failed: " .mysqli_connect_error());
+                        //     }
 
-                            $keys = ["K", "A", "R", "v"];
+                        //     $keys = ["K", "A", "R", "v"];
 
-                            foreach ($keys as $key){
-                                $sql = "SELECT `SUM($key)` FROM questions";
-                                echo $sql;
-                                $result = mysqli_query($conn, $sql);
-                            }
+                        //     foreach ($keys as $key){
+                        //         $sql = "SELECT `SUM($key)` FROM questions";
+                        //         echo $sql;
+                        //         $result = mysqli_query($conn, $sql);
+                        //     }
                     
-                            mysqli_close($conn);
-                        }
+                        //     mysqli_close($conn);
+                        // }
 
 
 
-                        function queryQuestion() {
+                        // function queryQuestion() {
 
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "test1";
+                        //     $servername = "localhost";
+                        //     $username = "root";
+                        //     $password = "";
+                        //     $dbname = "test1";
 
                             // $sessionNumber = $sessionNumber + 1;
                             // echo "session number after the database query is $sessionNumber";
 
                             // Create connection
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                            // Check connection
-                            if (!$conn) {
-                                die("Connection failed: " .mysqli_connect_error());
-                            }
+                            // $conn = mysqli_connect($servername, $username, $password, $dbname);
+                            // // Check connection
+                            // if (!$conn) {
+                            //     die("Connection failed: " .mysqli_connect_error());
+                            // }
+
+                            // $answers = $_POST["Ans"];
+                            // foreach ($answers as $questionId=>$answer){
+                            //     error_reporting(E_ERROR | E_PARSE);
+                            //     $connectorString = ", ";
+                            //     $setvalues = "";
+                            //     foreach( $answer as $key=>$value ) {
+                        //             $reqString = "`$key`= $value ";
+                        //             if ($setvalues != "") {
+                        //                 $setvalues = $setvalues .$connectorString. $reqString;
+                        //                 // echo "hello $setvalues <br>";
+                        //             }
+                        //             if ($setvalues == "") {
+                        //                 $setvalues = $reqString;
+                        //                 // echo "setvalues is $setvalues <br>";
+                        //             }
+                        //         }
+                        //         $sql = "UPDATE questions SET $setvalues  WHERE id=$questionId";
+                        //         // echo $sql;
+                        //         $result = mysqli_query($conn, $sql);
+                        //     }
+                    
+                        //     mysqli_close($conn);
+
+                        // }
+
+                            
+
+                        // if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
+                        //     queryQuestion();
+                        //     finalQuery();
+                        // }
+                ?>
+                
+                <div class="result" id="result">
+                    <h5 id="thankYouMessage">Thank You, the Total count is displayed below</h5>
+
+                    <table>
+	                    <thead>
+		                    <tr>
+                                <td>V</td>
+                                <td>A</td>
+                                <td>R</td>
+                                <td>K</td>
+		                    </tr>
+	                    </thead>
+                        <tbody>
+                            <tr>
+                                <td><?php echo 10;?></td>
+                                <td><?php echo 10;?></td>
+                                <td><?php echo 10;?></td>
+                                <td><?php echo 10;?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <?php
+                        if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
 
                             $answers = $_POST["Ans"];
                             foreach ($answers as $questionId=>$answer){
@@ -450,34 +512,21 @@
                                     $reqString = "`$key`= $value ";
                                     if ($setvalues != "") {
                                         $setvalues = $setvalues .$connectorString. $reqString;
-                                        // echo "hello $setvalues <br>";
+                                        echo "hello $setvalues <br>";
                                     }
                                     if ($setvalues == "") {
                                         $setvalues = $reqString;
-                                        // echo "setvalues is $setvalues <br>";
+                                        echo "setvalues is $setvalues <br>";
                                     }
                                 }
-                                $sql = "UPDATE questions SET $setvalues  WHERE id=$questionId";
-                                // echo $sql;
-                                $result = mysqli_query($conn, $sql);
+ 
                             }
-                    
-                            mysqli_close($conn);
-
+                                                
                         }
+                    ?>
 
-                            
+                </div>
 
-                        if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
-                            queryQuestion();
-                            finalQuery();
-                        }
-                                    
-                ?>
-
-            </div>
-        </form>
-    </div>
-    
 </body>
+
 </html>
