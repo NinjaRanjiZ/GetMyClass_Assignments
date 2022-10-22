@@ -39,7 +39,7 @@
                         <input type="radio" name="Ans[1][R]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[1][R]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -51,7 +51,7 @@
                         <input type="radio" name="Ans[2][I]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[2][I]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -63,7 +63,7 @@
                         <input type="radio" name="Ans[3][A]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[3][A]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -75,7 +75,7 @@
                         <input type="radio" name="Ans[4][S]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[4][S]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -87,7 +87,7 @@
                         <input type="radio" name="Ans[5][E]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[5][E]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -99,7 +99,7 @@
                         <input type="radio" name="Ans[6][C]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[6][C]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -111,7 +111,7 @@
                         <input type="radio" name="Ans[7][R]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[7][R]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -123,7 +123,7 @@
                         <input type="radio" name="Ans[8][A]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[8][A]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -135,7 +135,7 @@
                         <input type="radio" name="Ans[9][C]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[9][C]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -147,7 +147,7 @@
                         <input type="radio" name="Ans[10][E]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[10][E]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -159,7 +159,7 @@
                         <input type="radio" name="Ans[11][I]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[11][I]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -171,7 +171,7 @@
                         <input type="radio" name="Ans[12][S]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[12][S]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -183,7 +183,7 @@
                         <input type="radio" name="Ans[13][S]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[13][S]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -195,7 +195,7 @@
                         <input type="radio" name="Ans[14][R]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[14][R]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -207,7 +207,7 @@
                         <input type="radio" name="Ans[15][C]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[15][C]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -219,7 +219,7 @@
                         <input type="radio" name="Ans[16][E]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[16][E]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -231,7 +231,7 @@
                         <input type="radio" name="Ans[17][A]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[17][A]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -243,7 +243,7 @@
                         <input type="radio" name="Ans[18][I]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[18][I]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -255,7 +255,7 @@
                         <input type="radio" name="Ans[19][E]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[19][E]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -267,7 +267,7 @@
                         <input type="radio" name="Ans[20][S]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[20][S]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -279,7 +279,7 @@
                         <input type="radio" name="Ans[21][I]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[21][I]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -291,7 +291,7 @@
                         <input type="radio" name="Ans[22][R]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[22][R]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -303,7 +303,7 @@
                         <input type="radio" name="Ans[23][A]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[23][A]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -315,7 +315,7 @@
                         <input type="radio" name="Ans[24][C]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[24][C]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -327,7 +327,7 @@
                         <input type="radio" name="Ans[25][C]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[25][C]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -339,7 +339,7 @@
                         <input type="radio" name="Ans[26][I]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[26][I]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -351,7 +351,7 @@
                         <input type="radio" name="Ans[27][A]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[27][A]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -363,7 +363,7 @@
                         <input type="radio" name="Ans[28][S]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[28][S]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -375,7 +375,7 @@
                         <input type="radio" name="Ans[29][E]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[29][E]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -387,7 +387,7 @@
                         <input type="radio" name="Ans[30][R]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[30][R]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -399,7 +399,7 @@
                         <input type="radio" name="Ans[31][A]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[31][A]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -411,7 +411,7 @@
                         <input type="radio" name="Ans[32][R]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[32][R]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -423,7 +423,7 @@
                         <input type="radio" name="Ans[33][I]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[33][I]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -435,7 +435,7 @@
                         <input type="radio" name="Ans[34][S]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[34][S]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -447,7 +447,7 @@
                         <input type="radio" name="Ans[35][C]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[35][C]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -459,7 +459,7 @@
                         <input type="radio" name="Ans[36][E]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[36][E]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -471,7 +471,7 @@
                         <input type="radio" name="Ans[37][R]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[37][R]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -483,7 +483,7 @@
                         <input type="radio" name="Ans[38][C]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[38][C]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -495,7 +495,7 @@
                         <input type="radio" name="Ans[39][I]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[39][I]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -507,7 +507,7 @@
                         <input type="radio" name="Ans[40][S]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[40][S]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -519,7 +519,7 @@
                         <input type="radio" name="Ans[41][A]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[41][A]" class="radio" value=0>No
                     </label>
 
                 <br>
@@ -531,7 +531,7 @@
                         <input type="radio" name="Ans[42][E]" class="radio" value=1>Yes
                     </label>
                     <label for="">
-                        <input type="radio" name="" class="radio" value=1>No
+                        <input type="radio" name="Ans[42][E]" class="radio" value=0>No
                     </label>
                 
 
