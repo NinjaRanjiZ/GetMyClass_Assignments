@@ -548,36 +548,94 @@
     </div>
 
 
-            <div class="result" id="result">
-                    <h5 id="thankYouMessage">Thank You, the Total count is displayed below</h5>
-
-                    <table>
-	                    <thead>
-		                    <tr>
-                                <td>R</td>
-                                <td>I</td>
-                                <td>A</td>
-                                <td>S</td>
-                                <td>E</td>
-                                <td>C</td>
-		                    </tr>
-	                    </thead>
-                        <tbody>
-                            <tr>
-                                <td><?php echo 10;?></td>
-                                <td><?php echo 10;?></td>
-                                <td><?php echo 10;?></td>
-                                <td><?php echo 10;?></td>
-                                <td><?php echo 10;?></td>
-                                <td><?php echo 10;?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
                     <?php
-                        if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
+                        
+                        function finalQuery() {
+
+                            // this is an indexed array. Array items can be accessed using index.
+                            global $arrayRiasec;
+                            $arrayRiasec = ["R", "I", "A", "S", "E", "C"];
+
+
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "test1";
+
+                            // "countsArray" is an 
+                            global $countsArray;
+                            $countsArray = array();
+
+
+                            // Create connection
+                            $conn = mysqli_connect($servername, $username, $password, $dbname);
+                            // Check connection
+                            if (!$conn) {
+                                die("Connection failed: " .mysqli_connect_error());
+                            }
+
+                            
+                            foreach($arrayRiasec as $key) {
+                                $sql = "SELECT SUM(`$key`) FROM assignment2";
+                                $result = mysqli_query($conn, $sql);
+
+                                if (mysqli_num_rows($result) > 0) {
+
+                                    // output data of each row
+                                    while($row = mysqli_fetch_assoc($result)) {                                        
+                                        $count = $row["SUM(`$key`)"];
+                                        array_push($countsArray, $count);
+                                    }
+                                } else {
+                                    echo "0 results";
+                                }
+
+                            }
+                            // print_r($countsArray);
+
+
+                            global $resultArray;
+                            $resultArray = array();
+                            $i = 0;
+                            foreach($arrayRiasec as $key) {
+                                if ($i < count($arrayRiasec)) {
+                                    $resultArray[$key] = $countsArray[$i];
+                                }
+                                $i = $i + 1;
+                                
+                            }
+                            // print_r($resultArray);
+                            arsort($resultArray);
+
+
+                            // final sorted array which will be used to display the results. It is an indexed array.
+                            global $keysOfResultArray;
+                            $keysOfResultArray = array_keys($resultArray);
+                            // print_r($keysOfResultArray);
+
+                            mysqli_close($conn);
+                        }
+
+
+                        function queryQuestion() {
+
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "test1";
+
+                            // $sessionNumber = $sessionNumber + 1;
+                            // echo "session number after the database query is $sessionNumber";
+
+                            // Create connection
+                            $conn = mysqli_connect($servername, $username, $password, $dbname);
+                            // Check connection
+                            if (!$conn) {
+                                die("Connection failed: " .mysqli_connect_error());
+                            }
 
                             $answers = $_POST["Ans"];
+                            print_r($answers);
                             foreach ($answers as $questionId=>$answer){
                                 error_reporting(E_ERROR | E_PARSE);
                                 $connectorString = ", ";
@@ -586,19 +644,80 @@
                                     $reqString = "`$key`= $value ";
                                     if ($setvalues != "") {
                                         $setvalues = $setvalues .$connectorString. $reqString;
-                                        echo "hello $setvalues <br>";
+                                        // echo "hello $setvalues <br>";
                                     }
                                     if ($setvalues == "") {
                                         $setvalues = $reqString;
-                                        echo "setvalues is $setvalues <br>";
+                                        // echo "setvalues is $setvalues <br>";
                                     }
                                 }
- 
+                                $sql = "UPDATE assignment2 SET $setvalues  WHERE id=$questionId";
+                                echo $sql;
+                                $result = mysqli_query($conn, $sql);
                             }
-                                                
+                    
+                            mysqli_close($conn);
+
+                        }
+
+
+                        if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
+                            // queryQuestion();
+                            finalQuery();
                         }
                     ?>
 
-            </div>
+
+                <div class="result" id="result">
+                    <h5 id="thankYouMessage">Thank You, Your interest codes are displayed below</h5>
+
+                    <table>
+	                    <thead>
+		                    <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+		                    </tr>
+	                    </thead>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $keysOfResultArray[0]?></td>
+                                <td><?php echo $keysOfResultArray[1]?></td>
+                                <td><?php echo $keysOfResultArray[2]?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <?php
+                        // if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
+
+                        //     $answers = $_POST["Ans"];
+                        //     foreach ($answers as $questionId=>$answer){
+                        //         error_reporting(E_ERROR | E_PARSE);
+                        //         $connectorString = ", ";
+                        //         $setvalues = "";
+                        //         foreach( $answer as $key=>$value ) {
+                        //             $reqString = "`$key`= $value ";
+                        //             if ($setvalues != "") {
+                        //                 $setvalues = $setvalues .$connectorString. $reqString;
+                        //                 echo "hello $setvalues <br>";
+                        //             }
+                        //             if ($setvalues == "") {
+                        //                 $setvalues = $reqString;
+                        //                 echo "setvalues is $setvalues <br>";
+                        //             }
+                        //         }
+ 
+                        //     }
+                                                
+                        // }
+                    ?>
+
+                </div>
+
+                    
+                    
+
+            
 </body>
 </html>

@@ -380,102 +380,112 @@
 
                 <?php
                         
-                        $questions = array(1 => "You want to help your relative to go to the airport. You would:",
-                                           2 => "A YouTube video is showing how to make a special graph. There is a person speaking, some lists and words describing what to do and some diagrams are shown. You would learn most from:",
-                                           3 => "You are planning for a 7 days holiday with your family, you want the travel agent to:",
-                                           4 => "You are going to cook something as a special treat. You would:",
-                                           5 => "A group of tourists want to learn about the parks or wildlife reserves in your area. You would:",
-                                           6 => "You are about to purchase a digital camera or mobile phone. Other than price, what would most influence your decision?",
-                                           7 => "Remember a time when you learned playing chess or monopoly or a new mobile game. You learned best by:",
-                                           8 => "You have a problem with your heart. You would prefer that the doctor:",
-                                           9 => "You want to learn a new program, skill or game on a computer. You would:",
-                                           10 => "You like websites that have:",
-                                           11 => "Other than price, what would most influence your decision to buy a new non-fiction book?",
-                                           12 => "You are using a book, CD or website to learn how to take photos with your new digital camera. You would like to have:",
-                                           13 => "Do you prefer a teacher or a presenter who uses:",
-                                           14 => "You have finished a competition or test and would like some feedback. You would like to have feedback:",
-                                           15 => "You are going to choose food at a restaurant or cafe. You would:",
-                                           16 => "You have to make an important speech at a conference or special occasion. You would:");
-
-                        
-                        // $sessionNumber = 0;
-                        // echo "session before data base query is $sessionNumber";
-
-                        // function finalQuery() {
-
-                        //     $servername = "localhost";
-                        //     $username = "root";
-                        //     $password = "";
-                        //     $dbname = "test1";
-
-                        //     // Create connection
-                        //     $conn = mysqli_connect($servername, $username, $password, $dbname);
-                        //     // Check connection
-                        //     if (!$conn) {
-                        //         die("Connection failed: " .mysqli_connect_error());
-                        //     }
-
-                        //     $keys = ["K", "A", "R", "v"];
-
-                        //     foreach ($keys as $key){
-                        //         $sql = "SELECT `SUM($key)` FROM questions";
-                        //         echo $sql;
-                        //         $result = mysqli_query($conn, $sql);
-                        //     }
-                    
-                        //     mysqli_close($conn);
-                        // }
+                        // $questions = array(1 => "You want to help your relative to go to the airport. You would:",
+                        //                    2 => "A YouTube video is showing how to make a special graph. There is a person speaking, some lists and words describing what to do and some diagrams are shown. You would learn most from:",
+                        //                    3 => "You are planning for a 7 days holiday with your family, you want the travel agent to:",
+                        //                    4 => "You are going to cook something as a special treat. You would:",
+                        //                    5 => "A group of tourists want to learn about the parks or wildlife reserves in your area. You would:",
+                        //                    6 => "You are about to purchase a digital camera or mobile phone. Other than price, what would most influence your decision?",
+                        //                    7 => "Remember a time when you learned playing chess or monopoly or a new mobile game. You learned best by:",
+                        //                    8 => "You have a problem with your heart. You would prefer that the doctor:",
+                        //                    9 => "You want to learn a new program, skill or game on a computer. You would:",
+                        //                    10 => "You like websites that have:",
+                        //                    11 => "Other than price, what would most influence your decision to buy a new non-fiction book?",
+                        //                    12 => "You are using a book, CD or website to learn how to take photos with your new digital camera. You would like to have:",
+                        //                    13 => "Do you prefer a teacher or a presenter who uses:",
+                        //                    14 => "You have finished a competition or test and would like some feedback. You would like to have feedback:",
+                        //                    15 => "You are going to choose food at a restaurant or cafe. You would:",
+                        //                    16 => "You have to make an important speech at a conference or special occasion. You would:");
 
 
+                        function finalQuery() {
 
-                        // function queryQuestion() {
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "test1";
 
-                        //     $servername = "localhost";
-                        //     $username = "root";
-                        //     $password = "";
-                        //     $dbname = "test1";
+                            global $countsArray;
+                            $countsArray = array();
+
+
+                            // Create connection
+                            $conn = mysqli_connect($servername, $username, $password, $dbname);
+                            // Check connection
+                            if (!$conn) {
+                                die("Connection failed: " .mysqli_connect_error());
+                            }
+
+                            $keys = ["K", "A", "R", "V"];
+
+                            foreach ($keys as $key){
+                                $sql = "SELECT SUM(`$key`) FROM assignment1";
+                                // echo $sql;
+                                $result = mysqli_query($conn, $sql);
+                            
+                                if (mysqli_num_rows($result) > 0) {
+
+                                    // output data of each row
+                                    while($row = mysqli_fetch_assoc($result)) {                                        
+                                        $count = $row["SUM(`$key`)"];
+                                        array_push($countsArray, $count);
+                                }
+                                } else {
+                                    echo "0 results";
+                                }
+                            }
+                            mysqli_close($conn);
+                        }
+
+
+                        function queryQuestion() {
+
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "test1";
 
                             // $sessionNumber = $sessionNumber + 1;
                             // echo "session number after the database query is $sessionNumber";
 
                             // Create connection
-                            // $conn = mysqli_connect($servername, $username, $password, $dbname);
-                            // // Check connection
-                            // if (!$conn) {
-                            //     die("Connection failed: " .mysqli_connect_error());
-                            // }
+                            $conn = mysqli_connect($servername, $username, $password, $dbname);
+                            // Check connection
+                            if (!$conn) {
+                                die("Connection failed: " .mysqli_connect_error());
+                            }
 
-                            // $answers = $_POST["Ans"];
-                            // foreach ($answers as $questionId=>$answer){
-                            //     error_reporting(E_ERROR | E_PARSE);
-                            //     $connectorString = ", ";
-                            //     $setvalues = "";
-                            //     foreach( $answer as $key=>$value ) {
-                        //             $reqString = "`$key`= $value ";
-                        //             if ($setvalues != "") {
-                        //                 $setvalues = $setvalues .$connectorString. $reqString;
-                        //                 // echo "hello $setvalues <br>";
-                        //             }
-                        //             if ($setvalues == "") {
-                        //                 $setvalues = $reqString;
-                        //                 // echo "setvalues is $setvalues <br>";
-                        //             }
-                        //         }
-                        //         $sql = "UPDATE questions SET $setvalues  WHERE id=$questionId";
-                        //         // echo $sql;
-                        //         $result = mysqli_query($conn, $sql);
-                        //     }
+                            $answers = $_POST["Ans"];
+                            // print_r($answers);
+                            foreach ($answers as $questionId=>$answer){
+                                error_reporting(E_ERROR | E_PARSE);
+                                $connectorString = ", ";
+                                $setvalues = "";
+                                foreach( $answer as $key=>$value ) {
+                                    $reqString = "`$key`= $value ";
+                                    if ($setvalues != "") {
+                                        $setvalues = $setvalues .$connectorString. $reqString;
+                                        // echo "hello $setvalues <br>";
+                                    }
+                                    if ($setvalues == "") {
+                                        $setvalues = $reqString;
+                                        // echo "setvalues is $setvalues <br>";
+                                    }
+                                }
+                                $sql = "UPDATE assignment1 SET $setvalues  WHERE id=$questionId";
+                                // echo $sql;
+                                $result = mysqli_query($conn, $sql);
+                            }
                     
-                        //     mysqli_close($conn);
+                            mysqli_close($conn);
 
-                        // }
+                        }
 
-                            
 
-                        // if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
-                        //     queryQuestion();
-                        //     finalQuery();
-                        // }
+                        if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
+                            // queryQuestion();
+                            finalQuery();
+                        }
                 ?>
                 
                 <div class="result" id="result">
@@ -492,40 +502,43 @@
 	                    </thead>
                         <tbody>
                             <tr>
-                                <td><?php echo 10;?></td>
-                                <td><?php echo 10;?></td>
-                                <td><?php echo 10;?></td>
-                                <td><?php echo 10;?></td>
+                                <td><?php echo $countsArray["0"]?></td>
+                                <td><?php echo $countsArray["1"]?></td>
+                                <td><?php echo $countsArray["2"]?></td>
+                                <td><?php echo $countsArray["3"]?></td>
                             </tr>
                         </tbody>
                     </table>
+                
                     
+
                     <?php
-                        if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
+                        // if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
 
-                            $answers = $_POST["Ans"];
-                            foreach ($answers as $questionId=>$answer){
-                                error_reporting(E_ERROR | E_PARSE);
-                                $connectorString = ", ";
-                                $setvalues = "";
-                                foreach( $answer as $key=>$value ) {
-                                    $reqString = "`$key`= $value ";
-                                    if ($setvalues != "") {
-                                        $setvalues = $setvalues .$connectorString. $reqString;
-                                        echo "hello $setvalues <br>";
-                                    }
-                                    if ($setvalues == "") {
-                                        $setvalues = $reqString;
-                                        echo "setvalues is $setvalues <br>";
-                                    }
-                                }
+                        //     $answers = $_POST["Ans"];
+                        //     foreach ($answers as $questionId=>$answer){
+                        //         error_reporting(E_ERROR | E_PARSE);
+                        //         $connectorString = ", ";
+                        //         $setvalues = "";
+                        //         foreach( $answer as $key=>$value ) {
+                        //             $reqString = "`$key`= $value ";
+                        //             if ($setvalues != "") {
+                        //                 $setvalues = $setvalues .$connectorString. $reqString;
+                        //                 echo "hello $setvalues <br>";
+                        //             }
+                        //             if ($setvalues == "") {
+                        //                 $setvalues = $reqString;
+                        //                 echo "setvalues is $setvalues <br>";
+                        //             }
+                        //         }
  
-                            }
+                        //     }
                                                 
-                        }
+                        // }
                     ?>
-
                 </div>
+
+                
 
 </body>
 
