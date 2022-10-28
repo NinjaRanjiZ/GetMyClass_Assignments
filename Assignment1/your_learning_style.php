@@ -353,193 +353,134 @@
 
 
                 </ul>
-                <input type="submit" value="submit" name="submit" id="submitButton">
+                <div id="button">
+                    
+                    <button type="submit" value="submit" name="submit" id="submitButton">Submit</button>
+                </div>
                 <br>
-            </div>
+            </div> 
         </form>
     </div>
+                
+            <?php
 
-                <?php
-                    // $answers = $_POST["Ans"];
-                    // foreach ($answers as $questionId=>$answer){
-                    //     error_reporting(E_ERROR | E_PARSE);
-                    //     $setvalues = "";
-                    //     foreach( $answer as $key=>$value ) {
-                    //         if($setvalues != "") $setvalues = $setvalues ." , ";
-                    //             $setvalues = $setvalues.' `'.$key.'` = '.$value;
-                    //             echo "setvalues is $setvalues <br>";
-                    //     };
-                        
-                    //     $sql = "UPDATE questions SET $setvalues WHERE id=$questionId";
-                    //     echo "$sql <br>";
-                    //     // $result = mysqli_query($conn, $sql);
-                    // }
+                function getResultsFromTable($conn,$sessionID) {
                     
-                ?>
+                    global $countsArray;
+                    $countsArray = array();
+
+                    global $keys;
+                    $keys = ["V", "A", "R", "K"];
+
+                    foreach ($keys as $key){
+                        $sql = "SELECT SUM(`$key`) FROM Assignment_1 WHERE sessionID=$sessionID";
+
+                        // echo $sql;
+                        $result = mysqli_query($conn, $sql);
+                    
+                        if (mysqli_num_rows($result) > 0) {
+
+                            // output data of each row
+                            while($row = mysqli_fetch_assoc($result)) {
+                                $count = $row["SUM(`$key`)"];
+                                array_push($countsArray, $count);
+                        }
+                        } else {
+                            echo "0 results";
+                        }
+                    }
+                
+                }
 
 
-                <?php
+                function insertDataToTable($conn,$sessionID) {
+                    
+                    if(isset($_POST["Ans"])){
+                        $answers = $_POST["Ans"];
                         
-                        // $questions = array(1 => "You want to help your relative to go to the airport. You would:",
-                        //                    2 => "A YouTube video is showing how to make a special graph. There is a person speaking, some lists and words describing what to do and some diagrams are shown. You would learn most from:",
-                        //                    3 => "You are planning for a 7 days holiday with your family, you want the travel agent to:",
-                        //                    4 => "You are going to cook something as a special treat. You would:",
-                        //                    5 => "A group of tourists want to learn about the parks or wildlife reserves in your area. You would:",
-                        //                    6 => "You are about to purchase a digital camera or mobile phone. Other than price, what would most influence your decision?",
-                        //                    7 => "Remember a time when you learned playing chess or monopoly or a new mobile game. You learned best by:",
-                        //                    8 => "You have a problem with your heart. You would prefer that the doctor:",
-                        //                    9 => "You want to learn a new program, skill or game on a computer. You would:",
-                        //                    10 => "You like websites that have:",
-                        //                    11 => "Other than price, what would most influence your decision to buy a new non-fiction book?",
-                        //                    12 => "You are using a book, CD or website to learn how to take photos with your new digital camera. You would like to have:",
-                        //                    13 => "Do you prefer a teacher or a presenter who uses:",
-                        //                    14 => "You have finished a competition or test and would like some feedback. You would like to have feedback:",
-                        //                    15 => "You are going to choose food at a restaurant or cafe. You would:",
-                        //                    16 => "You have to make an important speech at a conference or special occasion. You would:");
-
-
-                        function finalQuery() {
-
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "test1";
-
-                            global $countsArray;
-                            $countsArray = array();
-
-
-                            // Create connection
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                            // Check connection
-                            if (!$conn) {
-                                die("Connection failed: " .mysqli_connect_error());
-                            }
-
-                            $keys = ["K", "A", "R", "V"];
-
-                            foreach ($keys as $key){
-                                $sql = "SELECT SUM(`$key`) FROM assignment1";
-                                // echo $sql;
-                                $result = mysqli_query($conn, $sql);
+                        foreach ($answers as $questionId=>$answer) {
+                            error_reporting(E_ERROR | E_PARSE);
                             
-                                if (mysqli_num_rows($result) > 0) {
+                            // this is the script for inserting the values into the table.
+                            // let the initial "VARK array" contain the values as 0.
+                            $varkArray = array("V"=>0, "A"=>0, "R"=>0, "K"=>0);
 
-                                    // output data of each row
-                                    while($row = mysqli_fetch_assoc($result)) {                                        
-                                        $count = $row["SUM(`$key`)"];
-                                        array_push($countsArray, $count);
-                                }
-                                } else {
-                                    echo "0 results";
-                                }
-                            }
-                            mysqli_close($conn);
-                        }
-
-
-                        function queryQuestion() {
-
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "test1";
-
-                            // $sessionNumber = $sessionNumber + 1;
-                            // echo "session number after the database query is $sessionNumber";
-
-                            // Create connection
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                            // Check connection
-                            if (!$conn) {
-                                die("Connection failed: " .mysqli_connect_error());
+                            foreach( $answer as $key=>$value ) {
+                                    $varkArray[$key] = $value;
                             }
 
-                            $answers = $_POST["Ans"];
-                            // print_r($answers);
-                            foreach ($answers as $questionId=>$answer){
-                                error_reporting(E_ERROR | E_PARSE);
-                                $connectorString = ", ";
-                                $setvalues = "";
-                                foreach( $answer as $key=>$value ) {
-                                    $reqString = "`$key`= $value ";
-                                    if ($setvalues != "") {
-                                        $setvalues = $setvalues .$connectorString. $reqString;
-                                        // echo "hello $setvalues <br>";
-                                    }
-                                    if ($setvalues == "") {
-                                        $setvalues = $reqString;
-                                        // echo "setvalues is $setvalues <br>";
-                                    }
-                                }
-                                $sql = "UPDATE assignment1 SET $setvalues  WHERE id=$questionId";
-                                // echo $sql;
-                                $result = mysqli_query($conn, $sql);
-                            }
-                    
-                            mysqli_close($conn);
+                            $v = $varkArray["V"];
+                            $a = $varkArray["A"];
+                            $r = $varkArray["R"];
+                            $k = $varkArray["K"];
 
-                        }
+                            $sql = "INSERT INTO Assignment_1 (questionID, V, A, R, K, sessionID)
+                                    VALUES ($questionId, $v, $a, $r, $k, $sessionID)";
+                            $result = mysqli_query($conn, $sql);
+
+                        }       
+                }
+
+                }
 
 
-                        if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
-                            // queryQuestion();
-                            finalQuery();
-                        }
-                ?>
-                
-                <div class="result" id="result">
-                    <h5 id="thankYouMessage">Thank You, the Total count is displayed below</h5>
+                if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "test1";
 
-                    <table>
-	                    <thead>
-		                    <tr>
-                                <td>V</td>
-                                <td>A</td>
-                                <td>R</td>
-                                <td>K</td>
-		                    </tr>
-	                    </thead>
-                        <tbody>
-                            <tr>
-                                <td><?php echo $countsArray["0"]?></td>
-                                <td><?php echo $countsArray["1"]?></td>
-                                <td><?php echo $countsArray["2"]?></td>
-                                <td><?php echo $countsArray["3"]?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                
-                    
+                // Create connection
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " .mysqli_connect_error());
+                }
+                // for time stamp.
+                $sessionID=time();
+                // call the functions which inserts the data to database and extracts the data from it.
+                insertDataToTable($conn,$sessionID);
+                getResultsFromTable($conn,$sessionID);
+                mysqli_close($conn);
+            }
+            ?>
 
-                    <?php
-                        // if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
 
-                        //     $answers = $_POST["Ans"];
-                        //     foreach ($answers as $questionId=>$answer){
-                        //         error_reporting(E_ERROR | E_PARSE);
-                        //         $connectorString = ", ";
-                        //         $setvalues = "";
-                        //         foreach( $answer as $key=>$value ) {
-                        //             $reqString = "`$key`= $value ";
-                        //             if ($setvalues != "") {
-                        //                 $setvalues = $setvalues .$connectorString. $reqString;
-                        //                 echo "hello $setvalues <br>";
-                        //             }
-                        //             if ($setvalues == "") {
-                        //                 $setvalues = $reqString;
-                        //                 echo "setvalues is $setvalues <br>";
-                        //             }
-                        //         }
- 
-                        //     }
-                                                
-                        // }
-                    ?>
-                </div>
+                <?php if ( isset($countsArray) && count($countsArray ) > 0) { ?>
+                    <div class="result" id="result">
+                        <h5 id="thankYouMessage">Thank You, the Total count is displayed below</h5>
 
-                
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>V</td>
+                                    <td>A</td>
+                                    <td>R</td>
+                                    <td>K</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo $countsArray["0"]?></td>
+                                    <td><?php echo $countsArray["1"]?></td>
+                                    <td><?php echo $countsArray["2"]?></td>
+                                    <td><?php echo $countsArray["3"]?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <?php  unset($countsArray); }
+                        ?>
+                    </div>
+        
+        
+        <!-- to load the php without form data on reload !-->
+        <script>
+        if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+
+        window.scrollTo(0, document.body.scrollHeight);
+        </script>
 
 </body>
-
 </html>

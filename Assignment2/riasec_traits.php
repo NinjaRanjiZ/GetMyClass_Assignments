@@ -14,7 +14,7 @@
         <a href="https://getmiclass.com" class="logo"><img src="https://getmiclass.com/theme/assets/img/Logo/GMC-blue.png" alt="" id="getmyclasslogo"></a>
     </div>
 
-    <div class="topic">
+     <div class="topic">
         <h1 id="title">
             THE RIASEC TEST
         </h1>
@@ -23,11 +23,11 @@
     <p id="description">
         Follow these easy steps to see where your interests are.
         Read each statement. If you agree with the statement, fill in the circle. There are no wrong answers!
-    </p>
+    </p> 
 
     <div class="assignmentForm" id="assignment">
 
-        <form action="riasec_traits.php" method="POST" id="survey-form">
+       <form action="riasec_traits.php" method="POST" id="survey-form">
 
             <!-- Checkbox section -->
             <div class="form-group">
@@ -538,185 +538,157 @@
                 </ul>
 
                 <div id="button">
-                    <input type="submit" value="submit" name="submit" id="submitButton">
+                    <button type="submit" value="submit" name="submit" id="submitButton">Submit</button>
                 </div>
                 <br>
 
 
             </div>
-        </form>
+        </form>  
     </div>
 
 
-                    <?php
+                <?php
+
+                    function getResultsFromTable($conn, $sessionID) {
+
+                        // this is an indexed array. Array items can be accessed using index.
+                        global $arrayRiasec;
+                        $arrayRiasec = ["R", "I", "A", "S", "E", "C"];
+
+                        // "countsArray" is an 
+                        global $countsArray;
+                        $countsArray = array();
                         
-                        function finalQuery() {
+                        foreach($arrayRiasec as $key) {
+                            $sql = "SELECT SUM(`$key`) FROM Assignment_2 WHERE sessionID=$sessionID";
+                            $result = mysqli_query($conn, $sql);
 
-                            // this is an indexed array. Array items can be accessed using index.
-                            global $arrayRiasec;
-                            $arrayRiasec = ["R", "I", "A", "S", "E", "C"];
+                            if (mysqli_num_rows($result) > 0) {
 
-
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "test1";
-
-                            // "countsArray" is an 
-                            global $countsArray;
-                            $countsArray = array();
-
-
-                            // Create connection
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                            // Check connection
-                            if (!$conn) {
-                                die("Connection failed: " .mysqli_connect_error());
+                                // output data of each row
+                                while($row = mysqli_fetch_assoc($result)) {                                        
+                                    $count = $row["SUM(`$key`)"];
+                                    array_push($countsArray, $count);
+                                }
+                            } else {
+                                echo "0 results";
                             }
 
+                        }
+                        // print_r($countsArray);
+
+
+                        global $resultArray;
+                        $resultArray = array();
+                        $i = 0;
+                        foreach($arrayRiasec as $key) {
+                            if ($i < count($arrayRiasec)) {
+                                $resultArray[$key] = $countsArray[$i];
+                            }
+                            $i = $i + 1;
                             
-                            foreach($arrayRiasec as $key) {
-                                $sql = "SELECT SUM(`$key`) FROM assignment2";
-                                $result = mysqli_query($conn, $sql);
-
-                                if (mysqli_num_rows($result) > 0) {
-
-                                    // output data of each row
-                                    while($row = mysqli_fetch_assoc($result)) {                                        
-                                        $count = $row["SUM(`$key`)"];
-                                        array_push($countsArray, $count);
-                                    }
-                                } else {
-                                    echo "0 results";
-                                }
-
-                            }
-                            // print_r($countsArray);
-
-
-                            global $resultArray;
-                            $resultArray = array();
-                            $i = 0;
-                            foreach($arrayRiasec as $key) {
-                                if ($i < count($arrayRiasec)) {
-                                    $resultArray[$key] = $countsArray[$i];
-                                }
-                                $i = $i + 1;
-                                
-                            }
-                            // print_r($resultArray);
-                            arsort($resultArray);
-
-
-                            // final sorted array which will be used to display the results. It is an indexed array.
-                            global $keysOfResultArray;
-                            $keysOfResultArray = array_keys($resultArray);
-                            // print_r($keysOfResultArray);
-
-                            mysqli_close($conn);
                         }
+                        // print_r($resultArray);
+                        arsort($resultArray);
 
+                        // final sorted array which will be used to display the results. It is an indexed array.
+                        global $keysOfResultArray;
+                        $keysOfResultArray = array_keys($resultArray);
+                        // print_r($keysOfResultArray);
 
-                        function queryQuestion() {
+                    }
 
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "test1";
+                    function insertDataToTable($conn, $sessionID) {
 
-                            // $sessionNumber = $sessionNumber + 1;
-                            // echo "session number after the database query is $sessionNumber";
-
-                            // Create connection
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                            // Check connection
-                            if (!$conn) {
-                                die("Connection failed: " .mysqli_connect_error());
-                            }
-
+                        if(isset($_POST["Ans"])){
                             $answers = $_POST["Ans"];
-                            print_r($answers);
-                            foreach ($answers as $questionId=>$answer){
-                                error_reporting(E_ERROR | E_PARSE);
-                                $connectorString = ", ";
-                                $setvalues = "";
-                                foreach( $answer as $key=>$value ) {
-                                    $reqString = "`$key`= $value ";
-                                    if ($setvalues != "") {
-                                        $setvalues = $setvalues .$connectorString. $reqString;
-                                        // echo "hello $setvalues <br>";
-                                    }
-                                    if ($setvalues == "") {
-                                        $setvalues = $reqString;
-                                        // echo "setvalues is $setvalues <br>";
-                                    }
-                                }
-                                $sql = "UPDATE assignment2 SET $setvalues  WHERE id=$questionId";
-                                echo $sql;
-                                $result = mysqli_query($conn, $sql);
+
+                        foreach ($answers as $questionId=>$answer) {
+                            error_reporting(E_ERROR | E_PARSE);
+
+                            // this is the script for inserting the values into the table.
+                            // let the initial "RIASEC array" contain the values as 0.
+                            $riasecArray = array("R"=>0, "I"=>0, "A"=>0, "S"=>0, "E"=>0, "C"=>0);
+
+                            foreach( $answer as $key=>$value ) {
+                                $riasecArray[$key] = $value;
                             }
+
+                            $r = $riasecArray["R"];
+                            $i = $riasecArray["I"];
+                            $a = $riasecArray["A"];
+                            $s = $riasecArray["S"];
+                            $e = $riasecArray["E"];
+                            $c = $riasecArray["C"];
+
+                            $sql = "INSERT INTO Assignment_2 (questionID, R, I, A, S, E, C, sessionID)
+                                    VALUES ($questionId, $r, $i, $a, $s, $e, $c, $sessionID)";
+                            $result = mysqli_query($conn, $sql);
+                        }
+
+                        }
+
+                    }
+
+
+                    if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "test1";
+
+                        // Create connection
+                        $conn = mysqli_connect($servername, $username, $password, $dbname);
+                        // Check connection
+                        if (!$conn) {
+                            die("Connection failed: " .mysqli_connect_error());
+                        }
+                        // for time stamp.
+                        $sessionID=time();
+
+                        // call the functions which inserts the data to database and extracts the data from it.
+                        insertDataToTable($conn,$sessionID);
+                        getResultsFromTable($conn,$sessionID);
+                        mysqli_close($conn);
+                    }
+
+                ?>
+
                     
-                            mysqli_close($conn);
-
-                        }
 
 
-                        if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
-                            // queryQuestion();
-                            finalQuery();
-                        }
-                    ?>
-
-
+            <?php if ( isset($countsArray) && count($countsArray ) > 0) { ?>
                 <div class="result" id="result">
                     <h5 id="thankYouMessage">Thank You, Your interest codes are displayed below</h5>
-
-                    <table>
-	                    <thead>
-		                    <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-		                    </tr>
-	                    </thead>
-                        <tbody>
-                            <tr>
-                                <td><?php echo $keysOfResultArray[0]?></td>
-                                <td><?php echo $keysOfResultArray[1]?></td>
-                                <td><?php echo $keysOfResultArray[2]?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <?php
-                        // if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
-
-                        //     $answers = $_POST["Ans"];
-                        //     foreach ($answers as $questionId=>$answer){
-                        //         error_reporting(E_ERROR | E_PARSE);
-                        //         $connectorString = ", ";
-                        //         $setvalues = "";
-                        //         foreach( $answer as $key=>$value ) {
-                        //             $reqString = "`$key`= $value ";
-                        //             if ($setvalues != "") {
-                        //                 $setvalues = $setvalues .$connectorString. $reqString;
-                        //                 echo "hello $setvalues <br>";
-                        //             }
-                        //             if ($setvalues == "") {
-                        //                 $setvalues = $reqString;
-                        //                 echo "setvalues is $setvalues <br>";
-                        //             }
-                        //         }
- 
-                        //     }
-                                                
-                        // }
-                    ?>
-
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo $keysOfResultArray[0]?></td>
+                                    <td><?php echo $keysOfResultArray[1]?></td>
+                                    <td><?php echo $keysOfResultArray[2]?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <?php  unset($countsArray); } ?>
                 </div>
+               
 
-                    
-                    
+        <!-- to load the php without form data on reload !-->
+        <script>
+        if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+
+        window.scrollTo(0, document.body.scrollHeight);
+        </script>
 
             
 </body>

@@ -40,7 +40,7 @@
 
     <form action="interest_survey.php" method="POST" id="survey-form">
 
-        <div class="set1" id="set1">
+        <div class="form-question" id="set1">
 
                 <label for="">
                     <input type="checkbox" name="Ans[1][A]" class="checkbox" value=1>Taking care of pets in your neighborhood
@@ -75,7 +75,7 @@
         <br>
         <br>
 
-        <div class="set2" id="set2">
+        <div class="form-question" id="set2">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][B]" class="checkbox" value=1>Repairing small appliances
@@ -110,7 +110,7 @@
         <br>
         <br>
 
-        <div class="set3" id="set3">
+        <div class="form-question" id="set3">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][C]" class="checkbox" value=1>Performing (music, drama, dance) for an audience
@@ -145,7 +145,7 @@
         <br>
         <br>
 
-        <div class="set4" id="set4">
+        <div class="form-question" id="set4">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][D]" class="checkbox" value=1>Using a cash register
@@ -180,7 +180,7 @@
         <br>
         <br>
 
-        <div class="set5" id="set5">
+        <div class="form-question" id="set5">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][E]" class="checkbox" value=1>Working as a kid's camp counselor or volunteer
@@ -215,7 +215,7 @@
         <br>
         <br>
 
-        <div class="set6" id="set6">
+        <div class="form-question" id="set6">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][F]" class="checkbox" value=1>Planning a mock stock market game
@@ -250,7 +250,7 @@
         <br>
         <br>
 
-        <div class="set7" id="set7">
+        <div class="form-question" id="set7">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][G]" class="checkbox" value=1>Campaigning for a political candidate
@@ -285,7 +285,7 @@
         <br>
         <br>
 
-        <div class="set8" id="set8">
+        <div class="form-question" id="set8">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][H]" class="checkbox" value=1>Taking care of a sick relative
@@ -320,7 +320,7 @@
         <br>
         <br>
 
-        <div class="set9" id="set9">
+        <div class="form-question" id="set9">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][I]" class="checkbox" value=1>Working in a restaurant
@@ -355,7 +355,7 @@
         <br>
         <br>
 
-        <div class="set10" id="set10">
+        <div class="form-question" id="set10">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][J]" class="checkbox" value=1>Making a family menu
@@ -390,7 +390,7 @@
         <br>
         <br>
 
-        <div class="set11" id="set11">
+        <div class="form-question" id="set11">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][K]" class="checkbox" value=1>Developing software programs
@@ -425,7 +425,7 @@
         <br>
         <br>
 
-        <div class="set12" id="set12">
+        <div class="form-question" id="set12">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][L]" class="checkbox" value=1>Reading mystery novels
@@ -460,7 +460,7 @@
         <br>
         <br>
 
-        <div class="set13" id="set13">
+        <div class="form-question" id="set13">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][M]" class="checkbox" value=1>Welding or working with metals
@@ -495,7 +495,7 @@
         <br>
         <br>
 
-        <div class="set14" id="set14">
+        <div class="form-question" id="set14">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][N]" class="checkbox" value=1>Cutting & styling hair
@@ -530,7 +530,7 @@
         <br>
         <br>
 
-        <div class="set15" id="set15">
+        <div class="form-question" id="set15">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][O]" class="checkbox" value=1>Visiting science museums
@@ -565,7 +565,7 @@
         <br>
         <br>
 
-        <div class="set16" id="set16">
+        <div class="form-question" id="set16">
 
             <label for="">
                 <input type="checkbox" name="Ans[1][P]" class="checkbox" value=1>Flying airplanes
@@ -600,145 +600,148 @@
         <br>
         
         <div id="button">
-            <input type="submit" value="submit" name="submit" id="submitButton">
+            <button type="submit" value="submit" name="submit" id="submitButton">Submit</button>
         </div>
         
     </form>
 
-                    <?php
+
+        <?php
                         
-                        function finalQuery() {
+                function getResultsFromTable($conn, $sessionID) {
 
-                            global $arrayOfInterests;
-                            $arrayOfInterests = array("A"=>"Agriculture, Food & Natural Resources",
-                                                  "B"=>"Architecture and Construction",
-                                                  "C"=>"Arts, Audio/Visual Technology & Communications",
-                                                  "D"=>"Business Management & Administration",
-                                                  "E"=>"Education & Training",
-                                                  "F"=>"Finance",
-                                                  "G"=>"Government & Public Administration",
-                                                  "H"=>"Health Science",
-                                                  "I"=>"Hospitality & Tourism",
-                                                  "J"=>"Human Services",
-                                                  "K"=>"Information Technology",
-                                                  "L"=>"Law, Public Safety, Corrections & Security",
-                                                  "M"=>"Manufacturing",
-                                                  "N"=>"Marketing",
-                                                  "O"=>"Science, Technology, Engineering & Math",
-                                                  "P"=>"Transportation, Distribution & Logistics");
-
-
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "test1";
-
-                            // "countsArray" is an indexed array. Array items can be accessed using index.
-                            global $countsArray;
-                            $countsArray = array();
+                global $arrayOfInterests;
+                $arrayOfInterests = array("A"=>"Agriculture, Food & Natural Resources",
+                                        "B"=>"Architecture and Construction",
+                                        "C"=>"Arts, Audio/Visual Technology & Communications",
+                                        "D"=>"Business Management & Administration",
+                                        "E"=>"Education & Training",
+                                        "F"=>"Finance",
+                                        "G"=>"Government & Public Administration",
+                                        "H"=>"Health Science",
+                                        "I"=>"Hospitality & Tourism",
+                                        "J"=>"Human Services",
+                                        "K"=>"Information Technology",
+                                        "L"=>"Law, Public Safety, Corrections & Security",
+                                        "M"=>"Manufacturing",
+                                        "N"=>"Marketing",
+                                        "O"=>"Science, Technology, Engineering & Math",
+                                        "P"=>"Transportation, Distribution & Logistics");
 
 
-                            // Create connection
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                            // Check connection
-                            if (!$conn) {
-                                die("Connection failed: " .mysqli_connect_error());
-                            }
+                // "countsArray" is an indexed array. Array items can be accessed using index.
+                global $countsArray;
+                $countsArray = array();
 
-                            
-                            foreach($arrayOfInterests as $key => $interest) {
-                                $sql = "SELECT SUM(`$key`) FROM assignment3";
-                                $result = mysqli_query($conn, $sql);
+                
+                foreach($arrayOfInterests as $key => $interest) {
+                    $sql = "SELECT SUM(`$key`) FROM Assignment_3 WHERE sessionID=$sessionID";
 
-                                if (mysqli_num_rows($result) > 0) {
+                    $result = mysqli_query($conn, $sql);
 
-                                    // output data of each row
-                                    while($row = mysqli_fetch_assoc($result)) {                                        
-                                        $count = $row["SUM(`$key`)"];
-                                        array_push($countsArray, $count);
-                                    }
-                                } else {
-                                    echo "0 results";
-                                }
+                    if (mysqli_num_rows($result) > 0) {
 
-                            }
-                            // print_r($countsArray);
-
-
-                            global $resultArray;
-                            $resultArray = array();
-                            $i = 0;
-                            foreach($arrayOfInterests as $key => $interest) {
-                                if ($i < count($arrayOfInterests)) {
-                                    $resultArray[$interest] = $countsArray[$i];
-                                }
-                                $i = $i + 1;
-                                
-                            }
-                            // print_r($resultArray);
-                            arsort($resultArray);
-
-
-                            // final sorted array which will be used to display the results. It is an indexed array.
-                            global $keysOfResultArray;
-                            $keysOfResultArray = array_keys($resultArray);
-                            // print_r($keysOfResultArray);
-
-                            mysqli_close($conn);
+                        // output data of each row
+                        while($row = mysqli_fetch_assoc($result)) {                                        
+                            $count = $row["SUM(`$key`)"];
+                            array_push($countsArray, $count);
                         }
+                    } else {
+                        echo "0 results";
+                    }
+
+                }
+                // print_r($countsArray);
 
 
-                        function queryQuestion() {
-
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "test1";
-
-                            // $sessionNumber = $sessionNumber + 1;
-                            // echo "session number after the database query is $sessionNumber";
-
-                            // Create connection
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                            // Check connection
-                            if (!$conn) {
-                                die("Connection failed: " .mysqli_connect_error());
-                            }
-
-                            $answers = $_POST["Ans"];
-                            // print_r($answers);
-                            foreach ($answers as $questionId=>$answer){
-                                error_reporting(E_ERROR | E_PARSE);
-                                $connectorString = ", ";
-                                $setvalues = "";
-                                foreach( $answer as $key=>$value ) {
-                                    $reqString = "`$key`= $value ";
-                                    if ($setvalues != "") {
-                                        $setvalues = $setvalues .$connectorString. $reqString;
-                                        // echo "hello $setvalues <br>";
-                                    }
-                                    if ($setvalues == "") {
-                                        $setvalues = $reqString;
-                                        // echo "setvalues is $setvalues <br>";
-                                    }
-                                }
-                                $sql = "UPDATE assignment3 SET $setvalues  WHERE id=$questionId";
-                                // echo $sql;
-                                $result = mysqli_query($conn, $sql);
-                            }
+                global $resultArray;
+                $resultArray = array();
+                $i = 0;
+                foreach($arrayOfInterests as $key => $interest) {
+                    if ($i < count($arrayOfInterests)) {
+                        $resultArray[$interest] = $countsArray[$i];
+                    }
+                    $i = $i + 1;
                     
-                            mysqli_close($conn);
-
-                        }
-
-
-                        if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
-                            // queryQuestion();
-                            finalQuery();
-                        }
-                    ?>
+                }
+                // print_r($resultArray);
+                arsort($resultArray);
 
 
+                // final sorted array which will be used to display the results. It is an indexed array.
+                global $keysOfResultArray;
+                $keysOfResultArray = array_keys($resultArray);
+                // print_r($keysOfResultArray);
+            }
+
+
+            function insertDataToTable($conn, $sessionID) {
+
+                if(isset($_POST["Ans"])){
+                    $answers = $_POST["Ans"];
+
+                foreach ($answers as $questionId=>$answer){
+                    error_reporting(E_ERROR | E_PARSE);
+
+                    // this is the script for inserting the values into the table.
+                    // let the initial "ABCD array" contain the values as 0.
+                    $varkArray = array("A"=>0, "B"=>0, "C"=>0, "D"=>0, "E"=>0, "F"=>0, "G"=>0, "H"=>0, "I"=>0, "J"=>0, "K"=>0, "L"=>0, "M"=>0, "N"=>0, "O"=>0, "P"=>0);
+
+                    foreach( $answer as $key=>$value ) {
+                            $varkArray[$key] = $value;
+                    }
+
+                    $a = $varkArray["A"];
+                    $b = $varkArray["B"];
+                    $c = $varkArray["C"];
+                    $d = $varkArray["D"];
+                    $e = $varkArray["E"];
+                    $f = $varkArray["F"];
+                    $g = $varkArray["G"];
+                    $h = $varkArray["H"];
+                    $i = $varkArray["I"];
+                    $j = $varkArray["J"];
+                    $k = $varkArray["K"];
+                    $l = $varkArray["L"];
+                    $m = $varkArray["M"];
+                    $n = $varkArray["N"];
+                    $o = $varkArray["O"];
+                    $p = $varkArray["P"];
+
+
+                    $sql = "INSERT INTO Assignment_3 (questionID, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, sessionID)
+                            VALUES ($questionId, $a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p, $sessionID)";
+                    $result = mysqli_query($conn, $sql);
+                }
+
+            }
+
+            }
+
+
+            if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "test1";
+            
+                // Create connection
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " .mysqli_connect_error());
+                }
+                // for time stamp.
+                $sessionID=time();
+                // call the functions which inserts the data to database and extracts the data from it.
+                insertDataToTable($conn,$sessionID);
+                getResultsFromTable($conn,$sessionID);
+                mysqli_close($conn);
+            }
+        ?>
+
+
+        <?php if ( isset($keysOfResultArray) && count($keysOfResultArray) ) { ?>
             <div class="result" id="result">
                     <h5 id="thankYouMessage">Thank You, Top 3 Interest Areas are displayed below</h5>
 
@@ -758,33 +761,18 @@
                             </tr>
                         </tbody>
                     </table>
-                    
-                    <?php
-                        // if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) {
-
-                        //     $answers = $_POST["Ans"];
-                        //     foreach ($answers as $questionId=>$answer){
-                        //         error_reporting(E_ERROR | E_PARSE);
-                        //         $connectorString = ", ";
-                        //         $setvalues = "";
-                        //         foreach( $answer as $key=>$value ) {
-                        //             $reqString = "`$key`= $value ";
-                        //             if ($setvalues != "") {
-                        //                 $setvalues = $setvalues .$connectorString. $reqString;
-                        //                 echo "hello $setvalues <br>";
-                        //             }
-                        //             if ($setvalues == "") {
-                        //                 $setvalues = $reqString;
-                        //                 echo "setvalues is $setvalues <br>";
-                        //             }
-                        //         }
- 
-                        //     }
-                                                
-                        // }
-                    ?>
-
+                    <?php  unset($keysOfResultArray);}?>
             </div>
 
+        
+        <!-- to load the php without form data on reload !-->
+        <script>
+        if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+
+        window.scrollTo(0, document.body.scrollHeight);
+        </script>
+</div>
 </body>
 </html>
