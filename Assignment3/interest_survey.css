@@ -126,6 +126,15 @@ form label {
   border-radius: 40px;
 }
 
+
+#button {
+  position: relative;
+  top: 40px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+
 #submitButton {
   background: #0066a2;
   margin-bottom: 40px;
@@ -139,12 +148,6 @@ form label {
   border-radius: 20px;
 }
 
-#button {
-  position: relative;
-  /* top: 40px; */
-  text-align: center;
-  margin: auto;
-}
 
 .checkbox {
   margin-right: 1rem;
@@ -155,25 +158,28 @@ form label {
 
 #result{
   background-color: lightblue;
+  margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 100px;
   border-radius: 80px;
   width: 40%;
-  height: 400px;
+  height: 370px;
   text-align: center;
   padding-top: 2px;
   padding-right: 60px;
   padding-left: 60px;
   line-height: 2;
-  position: relative;
-  top: -40px;
+  display: block;
 }
 
 
 #thankYouMessage {
   font-style: italic;
   font-weight: 1000;
-  font-size: 20px;
+  position: relative;
+  top: 40px;
+  line-height: 1.5;
 }
 
 
@@ -184,7 +190,7 @@ border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  top: -25px;
+  top: 60px;
 }
 
 
@@ -218,6 +224,29 @@ background-color: #ffffff;
 }
 
 
+@media only screen and (max-width: 1024px) {
+  #result {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 80px;
+    width: 60%;
+    text-align: center;
+    padding-top: 2px;
+    line-height: 2;
+    margin-bottom: 40px;
+    height: 400px;
+  }
+  
+  #thankYouMessage {
+    font-style: italic;
+    font-weight: 1000;
+    font-size: 20px;
+  }
+}
+
+
 @media only screen and (max-width: 814px) {
   #description {
     margin: 23px 31px;
@@ -229,7 +258,48 @@ background-color: #ffffff;
   form {
     margin: 15px 100px 20px 100px;
   }
+
+  #result {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 80px;
+    text-align: center;
+    padding-top: 2px;
+    line-height: 2;
+    margin-bottom: 100px;
+    display: block;
+    width: 80%;
+  }
+  #thankYouMessage {
+    font-style: italic;
+    font-weight: 1000;
+  }
 }
+
+
+@media only screen and (max-width: 768px) {
+  #result {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 80px;
+    text-align: center;
+    padding-top: 2px;
+    line-height: 2;
+    margin-bottom: 100px;
+    display: block;
+    width: 70%;
+    height: 400px;
+  }
+  #thankYouMessage {
+    font-style: italic;
+    font-weight: 1000;
+  }
+}
+
 
 @media only screen and (max-width: 700px) {
   form {
@@ -255,6 +325,24 @@ background-color: #ffffff;
     color: #131010e2;
     margin: 20px 80px 30px;
     text-align: center;
+  }
+
+  #result {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 80px;
+    text-align: center;
+    padding-top: 2px;
+    line-height: 2;
+    margin-bottom: 100px;
+    display: block;
+    width: 80%;
+  }
+  #thankYouMessage {
+    font-style: italic;
+    font-weight: 1000;
   }
 }
 
@@ -290,5 +378,38 @@ background-color: #ffffff;
     font-size: 13px;
     margin: 20px 40px 30px;
     text-align: center;
+  }
+
+  #result {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 80px;
+    text-align: center;
+    padding-top: 2px;
+    line-height: 2;
+    margin-bottom: 100px;
+    display: block;
+    width: 80%;
+    height: 280px;
+  }
+  #thankYouMessage {
+    font-style: italic;
+    font-weight: 1000;
+    font-size: 0.8rem;
+  }
+
+  table {
+    border-collapse: collapse;
+    font-family: Tahoma, Geneva, sans-serif;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    position: relative;
+    width: 60%;
+  }
+  table td{
+    padding: 3px;
+    font-size: 10px;
   }
 }

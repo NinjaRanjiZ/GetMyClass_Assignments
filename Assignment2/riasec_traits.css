@@ -145,19 +145,22 @@ form {
   margin-right: auto;
   margin-left: auto;
   border-radius: 80px;
-  width: 30%;
+  width: 40%;
   height: 275px;
   text-align: center;
   padding-top: 2px;
   line-height: 2;
-  margin-bottom: 40px;
+  margin-bottom: 100px;
+  display: block;
 }
 
 
 #thankYouMessage {
   font-style: italic;
   font-weight: 1000;
-  font-size: 20px;
+  position: relative;
+  top: 40px;
+  line-height: 1.5;
 }
 
 
@@ -168,7 +171,8 @@ table {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  top: -25px;
+  top: 60px;
+  width: 50%;
 }
 
 table td {
@@ -204,8 +208,8 @@ table tbody tr:nth-child(odd) {
     margin-right: auto;
     margin-left: auto;
     border-radius: 80px;
-    width: 30%;
-    height: 275px;
+    width: 40%;
+    height: 325px;
     text-align: center;
     padding-top: 2px;
     line-height: 2;
@@ -231,7 +235,46 @@ table tbody tr:nth-child(odd) {
   form {
     margin: 15px 100px 20px 100px;
   }
+  #result {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 80px;
+    text-align: center;
+    padding-top: 2px;
+    line-height: 2;
+    margin-bottom: 100px;
+    display: block;
+    width: 80%;
+  }
+  #thankYouMessage {
+    font-style: italic;
+    font-weight: 1000;
+  }
 }
+
+
+@media only screen and (max-width: 768px) {
+  #result {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 80px;
+    text-align: center;
+    padding-top: 2px;
+    line-height: 2;
+    margin-bottom: 100px;
+    display: block;
+    width: 70%;
+  }
+  #thankYouMessage {
+    font-style: italic;
+    font-weight: 1000;
+  }
+}
+
 
 @media only screen and (max-width: 700px) {
   form {
@@ -257,6 +300,24 @@ table tbody tr:nth-child(odd) {
     color: #131010e2;
     margin: 20px 80px 30px;
     text-align: center;
+  }
+
+  #result {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 80px;
+    text-align: center;
+    padding-top: 2px;
+    line-height: 2;
+    margin-bottom: 100px;
+    display: block;
+    width: 80%;
+  }
+  #thankYouMessage {
+    font-style: italic;
+    font-weight: 1000;
   }
 }
 
@@ -296,5 +357,25 @@ table tbody tr:nth-child(odd) {
 
   #quest {
     font-size: 1rem;
+  }
+
+  #result {
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 80px;
+    text-align: center;
+    padding-top: 2px;
+    line-height: 2;
+    margin-bottom: 100px;
+    display: block;
+    width: 80%;
+    height: 370px;
+  }
+  #thankYouMessage {
+    font-style: italic;
+    font-weight: 1000;
+    /* font-size: 15px; */
   }
 }

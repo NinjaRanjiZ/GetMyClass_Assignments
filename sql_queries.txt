@@ -1,0 +1,51 @@
+CREATE DATABASE test1;
+
+
+CREATE TABLE Assignment_1 (
+	id int(6) NOT NULL AUTO_INCREMENT,
+	questionID int(2) NOT NULL,
+	V int(1) NOT NULL,
+	A int(1) NOT NULL,
+	R int(1) NOT NULL,
+	K int(1) NOT NULL,
+	sessionID int(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE Assignment_2 (
+	id int(6) NOT NULL AUTO_INCREMENT,
+	questionID int(2) NOT NULL,
+	R int(1) NOT NULL,
+	I int(1) NOT NULL,
+	A int(1) NOT NULL,
+	S int(1) NOT NULL,
+	E int(1) NOT NULL,
+	C int(1) NOT NULL,
+	sessionID int(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE Assignment_3 (
+	id int(6) NOT NULL AUTO_INCREMENT,
+	questionID int(2) NOT NULL,
+	A int(1) NOT NULL,
+	B int(1) NOT NULL,
+	C int(1) NOT NULL,
+	D int(1) NOT NULL,
+	E int(1) NOT NULL,
+	F int(1) NOT NULL,
+	G int(1) NOT NULL,
+	H int(1) NOT NULL,
+	I int(1) NOT NULL,
+	J int(1) NOT NULL,
+	K int(1) NOT NULL,
+	L int(1) NOT NULL,
+	M int(1) NOT NULL,
+	N int(1) NOT NULL,
+	O int(1) NOT NULL,
+	P int(1) NOT NULL,
+	sessionID int(10) NOT NULL,
+    PRIMARY KEY (id)
+);

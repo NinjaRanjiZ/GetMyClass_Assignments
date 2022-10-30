@@ -92,9 +92,11 @@ select {
   font-size: 17px;
   font-weight: 700;
   margin: 15px 75px 20px 75px !important;
+  display: block;
 }
 #assignment {
   margin: 25px 180px 40px;
+  display: block;
 }
 
 li {
@@ -155,13 +157,16 @@ form {
   margin-bottom: 100px;
   display: block;
   height: 275px;
-  width: 30%;
+  width: 40%;
 }
 
 #thankYouMessage {
   font-style: italic;
   font-weight: 1000;
-  font-size: 20px;
+  /* font-size: 10px; */
+  position: relative;
+  top: 40px;
+  line-height: 1.5;
 }
 
 /* table styling */
@@ -171,7 +176,8 @@ table {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  top: -25px;
+  top: 60px;
+  width: 50%;
 }
 
 table td {
@@ -388,6 +394,5 @@ table tbody tr:nth-child(odd) {
   #thankYouMessage {
     font-style: italic;
     font-weight: 1000;
-    /* font-size: 15px; */
   }
 }
