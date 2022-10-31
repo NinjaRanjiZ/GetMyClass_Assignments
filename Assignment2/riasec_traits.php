@@ -20,7 +20,8 @@
         </h1>
     </div>
 
-                <?php if(($_SERVER['REQUEST_METHOD'] !== 'POST') && isset($_POST['submit']) == false) { ?>
+                <?php error_reporting(E_ERROR | E_PARSE); ?>
+                <?php if( isset($_POST['submit']) == false  || !isset($_POST["Ans"]) ) { ?>
 
                     <p id="description">
                         Follow these easy steps to see where your interests are.
@@ -593,15 +594,6 @@
                             
                         }
                         
-                        if (!array_filter($resultArray)) {
-                            // all values are empty
-                            echo "
-                                <script>
-                                    alert('Please Fill the Form and Submit Again');
-                                    window.location = 'riasec_traits.php';
-                                </script>
-                            ";
-                        }
 
                         arsort($resultArray);
 
@@ -672,7 +664,7 @@
 
 
                 <!-- to show the table only after the submit button is hit -->
-                <?php if ( isset($keysOfResultArray) && count($keysOfResultArray) > 0) { ?>
+                <?php if((isset($_POST['submit']) && count($countsArray) > 0) && isset($_POST["Ans"])) { ?>
                     <div class="result" id="result">
                         <div id="thankYouMessage">
                             Thank You for taking the survey.<br>
@@ -706,6 +698,13 @@
                         window.history.replaceState( null, null, window.location.href );
                     }
                 </script>
+
+
+                <?php if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit']) && !isset($_POST["Ans"])) { ?>
+                    <div id="formIncomplete">
+                        <div id="formIncompleteText">Please submit a valid form.</div>
+                    </div>
+                <?php } ?>
 
                 <!-- to scroll down to the bottom of the page -->
                 <script>

@@ -20,8 +20,8 @@
         </h1>
     </div>
 
-    
-                <?php if(($_SERVER['REQUEST_METHOD'] !== 'POST') && isset($_POST['submit']) == false) { ?>
+                <?php error_reporting(E_ERROR | E_PARSE); ?>
+                <?php if( isset($_POST['submit']) == false  || !isset($_POST["Ans"]) ) { ?>
 
                     <p id="description">
                         The VARK questionnaire provides you with a Profile of your Learning Preferences as well how you process Information.
@@ -358,8 +358,7 @@
 
                                 </ul>
                                 <div id="button">
-                                    
-                                    <button type="submit" value="submit" name="submit" id="submitButton" onclick="hideQuestions()">Submit</button>
+                                    <button type="submit" value="submit" name="submit" id="submitButton">Submit</button>
                                 </div>
                                 <br>
                             </div>
@@ -399,19 +398,20 @@
                             }
                         }
 
+                        
                         // echo "counts array";
                         // if the "countsArray" is printed in the beginning it will be empty array; but now "countsArray" is still empty but it is mapped.
                         // print_r($countsArray);
 
-                        if (!array_filter($countsArray)) {
-                            // all values are empty
-                            echo "
-                                <script>
-                                    alert('Please Fill the Form and Submit Again');
-                                    window.location = 'your_learning_style.php';
-                                </script>
-                            ";
-                        }
+                        // if (!array_filter($countsArray)) {
+                        //     // all values are empty
+                        //     echo "
+                        //         <script>
+                        //             alert('Please Fill the Form and Submit Again');
+                        //             window.location = 'your_learning_style.php';
+                        //         </script>
+                        //     ";
+                        // }
                     }
 
 
@@ -451,7 +451,6 @@
                         echo "<br>";
                         echo "<br>";
 
-
                         $servername = "localhost";
                         $username = "root";
                         $password = "";
@@ -476,7 +475,7 @@
 
 
                 <!-- to show the table only after the submit button is hit -->
-                <?php if ( isset($countsArray) && count($countsArray) > 0) { ?>
+                <?php if((isset($_POST['submit']) && count($countsArray) > 0) && isset($_POST["Ans"])) { ?>
                     <div class="result" id="result">
                         <div id="thankYouMessage">
                             Thank You for taking the survey.<br>
@@ -503,9 +502,9 @@
                         </table>
                     </div>
                     <!-- this unsetting "countsArray" is not required -->
-                <?php  unset($countsArray);} ?>
+                <?php  unset($countsArray); } ?>
 
-
+                
                 <!-- to load the php without form data on reload !-->
                 <script>
                 if ( window.history.replaceState ) {
@@ -513,21 +512,18 @@
                     }
                 </script>
 
+
+                <?php if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit']) && !isset($_POST["Ans"])) { ?>
+                    <div id="formIncomplete">
+                        <div id="formIncompleteText">Please submit a valid form.</div>
+                    </div>
+                <?php } ?>
+                
+
                 <!-- to scroll down to the bottom of the page -->
                 <script>
-                    window.scrollTo(0, document.body.scrollHeight);
+                        window.scrollTo(0, document.body.scrollHeight);
                 </script>
-
-                <!-- to hide div elements on submit; Tried with DOM; This method is not working. Don't know why. -->
-                <!-- <script>
-                    function hideQuestions() {
-                        var x = document.getElementById("description");
-                        var y = document.getElementById("assignment");
-                        alert(x.style.display);
-                        x.style.display = none;
-                        y.style.display = none;
-                    }
-                </script> -->
 
 
 </body>

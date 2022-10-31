@@ -95,7 +95,7 @@ select {
   display: block;
 }
 #assignment {
-  margin: 25px 180px 40px;
+  margin: 25px 180px 0px;
   display: block;
 }
 
@@ -142,6 +142,29 @@ form {
   text-align: center;
   justify-items: center;
   margin: auto;
+}
+
+
+#formIncomplete {
+  background-color: rgb(231, 75, 75);
+  text-align: center !important;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 80px;
+  display: block;
+  height: 60px;
+  width: 35%;
+  margin-top: 0px;
+}
+
+
+#formIncompleteText {
+  font-size: 1rem;
+  font-weight: 100px;
+  color: white;
+  position: relative;
+  top: 20px;
 }
 
 
@@ -394,5 +417,26 @@ table tbody tr:nth-child(odd) {
   #thankYouMessage {
     font-style: italic;
     font-weight: 1000;
+  }
+
+  #formIncomplete {
+    background-color: rgb(231, 75, 75);
+    text-align: center !important;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+    display: block;
+    height: 60px;
+    width: 35%;
+    margin-top: 0px;
+  }
+  
+  #formIncompleteText {
+    font-size: 1rem;
+    font-weight: 100px;
+    color: white;
+    position: relative;
+    top: 10px;
   }
 }

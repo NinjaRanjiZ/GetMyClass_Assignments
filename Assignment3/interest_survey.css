@@ -107,7 +107,7 @@ label {
 
 form {
   /* border: 2px solid black; */
-  margin: 25px 200px 40px;
+  margin: 25px 200px 0px;
   /* height: 7300px; */
 }
 
@@ -131,7 +131,6 @@ form label {
   position: relative;
   top: 40px;
   text-align: center;
-  margin-bottom: 100px;
 }
 
 
@@ -148,6 +147,27 @@ form label {
   border-radius: 20px;
 }
 
+#formIncomplete {
+  background-color: rgb(231, 75, 75);
+  text-align: center !important;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 80px;
+  display: block;
+  height: 60px;
+  width: 35%;
+  margin-top: 0px;
+}
+
+
+#formIncompleteText {
+  font-size: 1rem;
+  font-weight: 100px;
+  color: white;
+  position: relative;
+  top: 20px;
+}
 
 .checkbox {
   margin-right: 1rem;
@@ -411,5 +431,25 @@ background-color: #ffffff;
   table td{
     padding: 3px;
     font-size: 10px;
+  }
+
+  #formIncomplete {
+    background-color: rgb(231, 75, 75);
+    text-align: center !important;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+    display: block;
+    height: 60px;
+    width: 35%;
+    margin-top: 0px;
+  }
+  
+  #formIncompleteText {
+    font-size: 1rem;
+    font-weight: 100px;
+    color: white;
+    position: relative;
   }
 }

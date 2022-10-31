@@ -20,7 +20,8 @@
         </h1>
     </div>
 
-                    <?php if(($_SERVER['REQUEST_METHOD'] !== 'POST') && isset($_POST['submit']) == false) { ?>
+                    <?php error_reporting(E_ERROR | E_PARSE); ?>
+                    <?php if( isset($_POST['submit']) == false  || !isset($_POST["Ans"]) ) { ?>
 
                         <div class="growUp" id="growUp">
                             <h2>When I Grow Up</h2>
@@ -668,16 +669,6 @@
                                 
                             }
 
-                            if (!array_filter($resultArray)) {
-                                // all values are empty
-                                echo "
-                                    <script>
-                                        alert('Please Fill the Form and Submit Again');
-                                        window.location = 'interest_survey.php';
-                                    </script>
-                                ";
-                            }
-
                             // print_r($resultArray);
                             arsort($resultArray);
 
@@ -759,7 +750,7 @@
                     ?>
 
 
-                    <?php if ( isset($keysOfResultArray) && count($keysOfResultArray) ) { ?>
+                    <?php if((isset($_POST['submit']) && count($countsArray) > 0) && isset($_POST["Ans"])) { ?>
                         <div class="result" id="result">
                                 <div id="thankYouMessage">
                                     Thank You for taking the survey.<br>
@@ -792,9 +783,18 @@
                     if ( window.history.replaceState ) {
                             window.history.replaceState( null, null, window.location.href );
                         }
-
-                    window.scrollTo(0, document.body.scrollHeight);
                     </script>
+
+                    <?php if(($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit']) && !isset($_POST["Ans"])) { ?>
+                        <div id="formIncomplete">
+                            <div id="formIncompleteText">Please submit a valid form.</div>
+                        </div>
+                    <?php } ?>
+
+                    <script>
+                        window.scrollTo(0, document.body.scrollHeight);
+                    </script>
+                    
 </div>
 </body>
 </html>
