@@ -754,7 +754,7 @@
                         <div class="result" id="result">
                                 <div id="thankYouMessage">
                                     Thank You for taking the survey.<br>
-                                    Please find your score & suggested career pathway
+                                    Please find your suggested career pathway
                                 </div>
 
                                 <table>
