@@ -341,7 +341,7 @@ table tbody tr:nth-child(odd) {
     text-align: center;
     padding-top: 2px;
     line-height: 2;
-    margin-bottom: 100px;
+    margin-bottom: 0px;
     display: block;
     width: 70%;
   }
@@ -349,6 +349,19 @@ table tbody tr:nth-child(odd) {
     font-style: italic;
     font-weight: 1000;
   }
+
+    /* area summary div, this div sets the RIASEC summary divs in the middle */
+.pdfSummary {
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 75%;
+  text-align: center;
+  padding-top: 2px;
+  line-height: 2;
+  margin-bottom: 100px;
+  display: block;
+}
 }
 
 
@@ -444,7 +457,7 @@ table tbody tr:nth-child(odd) {
     text-align: center;
     padding-top: 2px;
     line-height: 2;
-    margin-bottom: 100px;
+    margin-bottom: 0px;
     display: block;
     width: 80%;
     height: 370px;
@@ -454,4 +467,18 @@ table tbody tr:nth-child(odd) {
     font-weight: 1000;
     /* font-size: 15px; */
   }
+
+  /* area summary div, this div sets the RIASEC summary divs in the middle */
+.pdfSummary {
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  text-align: center;
+  padding-top: 2px;
+  line-height: 2;
+  margin-bottom: 100px;
+  display: block;
+}
+
 }
