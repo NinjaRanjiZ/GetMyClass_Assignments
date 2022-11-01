@@ -754,15 +754,15 @@
                         <div class="result" id="result">
                                 <div id="thankYouMessage">
                                     Thank You for taking the survey.<br>
-                                    Please find your suggested career pathway
+                                    Please find your score and suggested career pathway below
                                 </div>
 
                                 <table>
                                     <thead>
                                         <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
+                                            <td><?php echo $resultArray[$keysOfResultArray[0]]?></td>
+                                            <td><?php echo $resultArray[$keysOfResultArray[1]]?></td>
+                                            <td><?php echo $resultArray[$keysOfResultArray[2]]?></td>
                                         </tr>
                                     </thead>
                                     <tbody>

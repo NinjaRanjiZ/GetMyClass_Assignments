@@ -563,6 +563,9 @@
                         // "countsArray" is an 
                         global $countsArray;
                         $countsArray = array();
+
+                        global $traits;
+                        $traits=array("R"=>"Realistic","I"=>"Investigative","A"=>"Artistic","S"=>"Social","E"=>"Enterprising","C"=>"Conventional");
                         
                         foreach($arrayRiasec as $key) {
                             $sql = "SELECT SUM(`$key`) FROM Assignment_2 WHERE sessionID=$sessionID";
@@ -600,8 +603,14 @@
                         // final sorted array which will be used to display the results. It is an indexed array.
                         global $keysOfResultArray;
                         $keysOfResultArray = array_keys($resultArray);
+
+                        // this sorted sliced indexed array keeps top 3 RIASEC values.
+                        global $final;
+                        // below line slices the array and preserves the sliced values.
+                        $final = (array_slice($keysOfResultArray,0,3,true));
                     }
 
+                    
                     function insertDataToTable($conn, $sessionID) {
 
                         if(isset($_POST["Ans"])){
@@ -664,32 +673,384 @@
 
 
                 <!-- to show the table only after the submit button is hit -->
-                <?php if((isset($_POST['submit']) && count($countsArray) > 0) && isset($_POST["Ans"])) { ?>
+                <?php if((isset($_POST['submit'])) && isset($_POST["Ans"])) { ?>
                     <div class="result" id="result">
                         <div id="thankYouMessage">
                             Thank You for taking the survey.<br>
-                            Please find your score and preferred interest codes
+                            Please find your score and preferred learning styles below
                         </div>
 
                         <table>
                                 <thead>
                                     <tr>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>3</td>
+                                        <td><?php echo $resultArray[$keysOfResultArray[0]]?></td>
+                                        <td><?php echo $resultArray[$keysOfResultArray[1]]?></td>
+                                        <td><?php echo $resultArray[$keysOfResultArray[2]]?></td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><?php echo $keysOfResultArray[0]?></td>
-                                        <td><?php echo $keysOfResultArray[1]?></td>
-                                        <td><?php echo $keysOfResultArray[2]?></td>
+                                        <td><?php echo $traits[$keysOfResultArray[0]]?></td>
+                                        <td><?php echo $traits[$keysOfResultArray[1]]?></td>
+                                        <td><?php echo $traits[$keysOfResultArray[2]]?></td>
                                     </tr>
                                 </tbody>
                         </table>
                     </div>
-                <!-- this step is not required -->
-                <?php  unset($keysOfResultArray); } ?>
+                <?php  } ?>
+
+
+                    <!-- make the stylish div for  RIASEC -->
+                    <div class="pdfSummary">
+                        <!-- First trait -->
+                        <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("R", $final)) { ?>
+                        <div class="areaSummary" id="R">
+                            
+                            R = Realistic
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                                These people are often good at mechanical or athletic jobs.
+                                <br> 
+                                Good college majors for Realistic people are...
+                            </div>
+                            
+                            <div class="listItems">
+                                <ul class="summary">
+                                    <li>
+                                        Agriculture
+                                    </li>
+                                    <li>
+                                        Health Assistant
+                                    </li>
+                                    <li>
+                                        Computers
+                                    </li>
+                                    <li>
+                                        Construction
+                                    </li>
+                                    <li>
+                                        Mechanic/Machinist
+                                    </li>
+                                    <li>
+                                        Engineering
+                                    </li>
+                                    <li>
+                                        Food and Hospitality
+                                    </li>
+                        
+                                </ul>
+                            </div>
+
+                            
+                            <div class="relatedPathways">
+                                <div id="relatedPaths">
+                                    Related Pathways
+                                </div>
+                                <br>
+                                <br>
+                                Natural Resources
+                                <br> 
+                                Health Services
+                                <br>
+                                Industrial and Engineering Technology
+                                <br>
+                                Arts and Communication
+                            </div>
+                        
+                        </div>
+                        <?php } ?>
+
+
+                        <!-- second trait -->
+                        <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("I", $final)) { ?>
+                        <div class="areaSummary" id="I">
+                            
+                            I = Investigative
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                                These people like to watch, learn, analyze and solve problems.
+                                <br> 
+                                Good college majors for Investigative people are...
+                            </div>
+                            
+                            <div class="listItems">
+                                <ul class="summary">
+                                    <li>
+                                        Marine Biology
+                                    </li>
+                                    <li>
+                                        Engineering
+                                    </li>
+                                    <li>
+                                        Chemistry
+                                    </li>
+                                    <li>
+                                        Zoology
+                                    </li>
+                                    <li>
+                                        Medicine/Surgery
+                                    </li>
+                                    <li>
+                                        Consumer Economics
+                                    </li>
+                                    <li>
+                                        Psychology
+                                    </li>
+                        
+                                </ul>
+                            </div>
+
+                            
+                            <div class="relatedPathways">
+                                <div id="relatedPaths">
+                                    Related Pathways
+                                </div>
+                                <br>
+                                <br>
+                                Health Services
+                                <br> 
+                                Business
+                                <br>
+                                Public and Human Services
+                                <br>
+                                Industrial and Engineering Technology
+                            </div>
+                        
+                        </div>
+                        <?php } ?>
+
+
+                        <!-- third trait -->
+                        <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("A", $final)) { ?>
+                        <div class="areaSummary" id="A">
+                            
+                            A = Artistic
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                                These people like to work in unstructured situations where they can use their creativity.
+                                <br> 
+                                Good majors for Artistic people are...
+                            </div>
+                            
+                            <div class="listItems">
+                                <ul class="summary">
+                                    <li>
+                                        Communications
+                                    </li>
+                                    <li>
+                                        Cosmetology
+                                    </li>
+                                    <li>
+                                        Fine and Performing Arts
+                                    </li>
+                                    <li>
+                                        Photography
+                                    </li>
+                                    <li>
+                                        Radio and TV
+                                    </li>
+                                    <li>
+                                        Interior Design
+                                    </li>
+                                    <li>
+                                        Architecture
+                                    </li>
+                        
+                                </ul>
+                            </div>
+
+                            
+                            <div class="relatedPathways">
+                                <div id="relatedPaths">
+                                    Related Pathways
+                                </div>
+                                <br>
+                                <br>
+                                Public and Human Services
+                                <br>
+                                Arts and Communication
+                            </div>
+                        
+                        </div>
+                        <?php } ?>
+
+
+                        <!-- fourth trait -->
+                        <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("S", $final)) { ?>
+                        <div class="areaSummary" id="S">
+                            
+                            S = Social
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                                These people like to work with other people, rather than things.
+                                <br> 
+                                Good college majors for Social people are...
+                            </div>
+                            
+                            <div class="listItems">
+                                <ul class="summary">
+                                    <li>
+                                        Counseling
+                                    </li>
+                                    <li>
+                                        Nursing
+                                    </li>
+                                    <li>
+                                        Physical Therapy
+                                    </li>
+                                    <li>
+                                        Travel
+                                    </li>
+                                    <li>
+                                        Advertising
+                                    </li>
+                                    <li>
+                                        Public Relations
+                                    </li>
+                                    <li>
+                                        Education
+                                    </li>
+                        
+                                </ul>
+                            </div>
+
+                            
+                            <div class="relatedPathways">
+                                <div id="relatedPaths">
+                                    Related Pathways
+                                </div>
+                                <br>
+                                <br>
+                                Health Services
+                                <br> 
+                                Public and Human Services
+                            </div>
+                        
+                        </div>
+                        <?php } ?>
+
+
+                        <!-- fifth trait -->
+                        <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("E", $final)) { ?>
+                        <div class="areaSummary" id="E">
+                            
+                            E = Enterprising
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                                These people like to work with others and enjoy persuading and and performing.
+                                <br> 
+                                Good college majors for Enterprising people are:
+                            </div>
+                            
+                            <div class="listItems">
+                                <ul class="summary">
+                                    <li>
+                                        Fashion Merchandising
+                                    </li>
+                                    <li>
+                                        Real Estate
+                                    </li>
+                                    <li>
+                                        Marketing/Sales
+                                    </li>
+                                    <li>
+                                        Law
+                                    </li>
+                                    <li>
+                                        Political Science
+                                    </li>
+                                    <li>
+                                        International Trade
+                                    </li>
+                                    <li>
+                                        Banking/Finance
+                                    </li>
+                        
+                                </ul>
+                            </div>
+
+                            
+                            <div class="relatedPathways">
+                                <div id="relatedPaths">
+                                    Related Pathways
+                                </div>
+                                <br>
+                                <br>
+                                Business
+                                <br>
+                                Public and Human Services
+                                <br>
+                                Arts and Communication
+                            </div>
+                        
+                        </div>
+                        <?php } ?>
+
+
+                        <!-- sixth trait -->
+                        <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("C", $final)) { ?>
+                        <div class="areaSummary" id="C">
+                            
+                            C = Conventional
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                                These people are very detail oriented,organized and like to work with data.
+                                <br> 
+                                Good college majors for Conventional people are...
+                            </div>
+                            
+                            <div class="listItems">
+                                <ul class="summary">
+                                    <li>
+                                        Accounting
+                                    </li>
+                                    <li>
+                                        Court Reporting
+                                    </li>
+                                    <li>
+                                        Insurance
+                                    </li>
+                                    <li>
+                                        Administration
+                                    </li>
+                                    <li>
+                                        Medical Records
+                                    </li>
+                                    <li>
+                                        Banking
+                                    </li>
+                                    <li>
+                                        Data Processing
+                                    </li>
+                        
+                                </ul>
+                            </div>
+
+                            
+                            <div class="relatedPathways">
+                                <div id="relatedPaths">
+                                    Related Pathways
+                                </div>
+                                <br>
+                                <br>
+                                Health Services
+                                <br> 
+                                Business
+                                <br>
+                                Industrial and Engineering Technology
+                            </div>
+                        
+                        </div>
+                        <?php } ?>
+
+                    </div>
+
 
 
                 <!-- to load the php without form data on reload !-->

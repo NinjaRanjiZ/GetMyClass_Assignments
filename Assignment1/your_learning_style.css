@@ -177,7 +177,7 @@ form {
   text-align: center;
   padding-top: 2px;
   line-height: 2;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   display: block;
   height: 275px;
   width: 40%;
@@ -227,6 +227,33 @@ table tbody tr {
 table tbody tr:nth-child(odd) {
   background-color: #ffffff;
 }
+
+
+/* area summary div, this div sets the RIASEC summary divs in the middle */
+.pdfSummary {
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 40%;
+  text-align: center;
+  padding-top: 2px;
+  line-height: 2;
+  margin-bottom: 100px;
+  display: block;
+}
+
+.areaSummary {
+  border: 0.5px #252525;
+  background-color: #cd9e9ea3;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  line-height: 1.1;
+  padding: 30px 30px 30px 30px !important;
+  border-radius: 40px;
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
 
 @media (min-width: 480px) {
   form {

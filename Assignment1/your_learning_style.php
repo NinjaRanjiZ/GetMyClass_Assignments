@@ -380,6 +380,9 @@
                         global $keys;
                         $keys = ["V", "A", "R", "K"];
 
+                        global $learningStyles;
+                        $learningStyles=array("V"=>"Visual","A"=>"Auditory","R"=>"Read/write","K"=>"Kinesthetic");
+
                         foreach ($keys as $key){
                             $sql = "SELECT SUM(`$key`) FROM Assignment_1 WHERE sessionID=$sessionID";
 
@@ -398,20 +401,31 @@
                             }
                         }
 
-                        
-                        // echo "counts array";
-                        // if the "countsArray" is printed in the beginning it will be empty array; but now "countsArray" is still empty but it is mapped.
-                        // print_r($countsArray);
 
-                        // if (!array_filter($countsArray)) {
-                        //     // all values are empty
-                        //     echo "
-                        //         <script>
-                        //             alert('Please Fill the Form and Submit Again');
-                        //             window.location = 'your_learning_style.php';
-                        //         </script>
-                        //     ";
-                        // }
+                        // this "resultArray" is an associative array which has "trait=>respective count" 
+                        global $resultArray;
+                        $resultArray = array();
+
+                        $i = 0;
+                        foreach($keys as $key) {
+                            if ($i < count($keys)) {
+                                $resultArray[$key] = $countsArray[$i];
+                            }
+                            $i = $i + 1;
+                        }
+                        
+
+                        arsort($resultArray);
+
+                        // final sorted array which will be used to display the results. It is an indexed array.
+                        global $keysOfResultArray;
+                        $keysOfResultArray = array_keys($resultArray);
+
+
+                        // this sorted sliced indexed array keeps top 3 VARK values.
+                        global $final;
+                        // below line slices the array and preserves the sliced values.
+                        $final = (array_slice($keysOfResultArray,0,3,true));
                     }
 
 
@@ -485,24 +499,108 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <td>V</td>
-                                    <td>A</td>
-                                    <td>R</td>
-                                    <td>K</td>
+                                    <td><?php echo $resultArray[$keysOfResultArray[0]]?></td>
+                                    <td><?php echo $resultArray[$keysOfResultArray[1]]?></td>
+                                    <td><?php echo $resultArray[$keysOfResultArray[2]]?></td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><?php echo $countsArray["0"]?></td>
-                                    <td><?php echo $countsArray["1"]?></td>
-                                    <td><?php echo $countsArray["2"]?></td>
-                                    <td><?php echo $countsArray["3"]?></td>
+                                    <td><?php echo $learningStyles[$keysOfResultArray[0]]?></td>
+                                    <td><?php echo $learningStyles[$keysOfResultArray[1]]?></td>
+                                    <td><?php echo $learningStyles[$keysOfResultArray[2]]?></td>
                                 </tr>
                             </tbody>
                         </table>
+
                     </div>
-                    <!-- this unsetting "countsArray" is not required -->
-                <?php  unset($countsArray); } ?>
+                <?php  } ?>
+
+
+
+                <!-- make the stylish div for VARC -->
+                <div class="pdfSummary">
+                    <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("V", $final)) { ?>
+                        <!-- visual learning style -->
+                        <div class="areaSummary" id="V">
+                            
+                            V = Visual Learning Style
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                                Someone with a Visual learning style has a preference for seen or observed things, including
+                                pictures, diagrams, demonstrations, displays, handouts, films, flip-chart, etc. These people will
+                                use phrases such as ‘show me’, ‘let’s have a look at that’ and will be best able to perform a new
+                                task after reading the instructions or watching someone else do it first. These are the people
+                                who will work from lists and written directions and instructions.
+                            </div>
+                        </div>
+                    <?php } ?>
+
+
+                    <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("A", $final)) { ?>
+                        <!-- auditory learning style -->
+                        <div class="areaSummary" id="A">
+                            
+                            A = Auditory Learning Style:
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                            Someone with an Auditory learning style has a preference for the transfer of information
+                            through listening: to the spoken word, of self or others, of sounds and noises. These people will
+                            use phrases such as ‘tell me’, ‘let’s talk it over’ and will be best able to perform a new task after
+                            listening to instructions from an expert. These are the people who are happy being given
+                            spoken instructions over the telephone, and can remember all the words to songs that they
+                            hear!
+                            </div>
+                        </div>
+                    <?php } ?>
+
+
+                    <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("R", $final)) { ?>
+                        <!-- read/write learning style -->
+                        <div class="areaSummary" id="R">
+                            
+                            R = Read / Write Learning Style:
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                            Someone with a Read/Writing learning style has a preference for information to be displayed in
+                            words – text based information, reports, manuals, essays and assignments. These people will
+                            use words such as let me read the instructions, let me write you a report, I will do my
+                            presentation on a PowerPoint. These are the people who will like to read about a subject,
+                            follow written instructions and write their responses.
+                            </div>
+                        </div>
+                    <?php } ?>
+
+                    
+                    <?php if((isset($_POST['submit'])) && isset($_POST["Ans"]) && in_array("K", $final)) { ?>
+                        <!-- kinesthetic learning style -->
+                        <div class="areaSummary" id="K">
+                            
+                            K = Kinesthetic Learning Style:
+                            <br>
+                            <br>
+                            <div class="traitDescription">
+                            Someone with a Kinesthetic learning style has a preference for physical experience - touching,
+                            feeling, holding, doing, practical hands-on experiences. These people will use phrases such as
+                            ‘let me try’, ‘how do you feel?’ and will be best able to perform a new task by going ahead and
+                            trying it out, learning as they go. These are the people who like to experiment, hands-on, and
+                            never look at the instructions first!
+                            The higher your score in a particular style, that is the main preferred learning style, but this will
+                            be part of a blend of all four. Some people have a very strong preference; other people have a
+                            more even mixture of two, three or less commonly, four styles.
+                            When you know your preferred learning style(s) you understand the type of learning that best
+                            suits you. This enables you to choose the types of learning that work best for you. There is no
+                            right or wrong learning style. The point is that there are types of learning that are right for your
+                            own preferred learning style.
+                            </div>
+                        </div>
+                    <?php } ?>
+
+                </div>
+
 
                 
                 <!-- to load the php without form data on reload !-->
